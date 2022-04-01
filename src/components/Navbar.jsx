@@ -15,7 +15,7 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/search"}>Pesquisar</Link>
           </li>
           <li>
             <Link to={"/about"}>Sobre o app</Link>

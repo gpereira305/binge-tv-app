@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import noImage from "../assets/images/no_image.jpg";
+import GoToTopShows from "../components/GoToTopShows";
 import {
   Container,
   ShowDetailedWrapper,
@@ -8,8 +10,10 @@ import {
   ShowDetailedName,
   ShowDetailedData,
   ShowDetailedSummary,
-  ShowDetailedCast,
   ShowDetailedCastInfo,
+  ShowDetailedGrid,
+  ShowMargin,
+  ShowMoreBtn,
 } from "../styles/Styled.js";
 
 const ShowDetail = ({
@@ -34,6 +38,17 @@ const ShowDetail = ({
     // eslint-disable-next-line
   }, []);
 
+  const [visibleCast, setVisibleCast] = useState(12);
+  const [visibleCrew, setVisibleCrew] = useState(12);
+
+  const handleCast = () => {
+    setVisibleCast((prevShows) => prevShows + 12);
+  };
+
+  const handleCrew = () => {
+    setVisibleCrew((prevShows) => prevShows + 12);
+  };
+
   const {
     name,
     summary,
@@ -50,51 +65,52 @@ const ShowDetail = ({
   } = show;
 
   // parseia de html tag para string
-  const regex = /( |<([^>]+)>)/gi;
-  const summarized = summary?.replace(regex, " ");
+  const summarized = (text) => {
+    const regex = /( |<([^>]+)>)/gi;
+    return text?.replace(regex, " ");
+  };
 
-  const weekDays = schedule?.days.map((i) => {
-    if (i === "Monday") {
-      i = " Segundas-feiras";
+  // traduz os dias da semana para o Português
+  const weekDays = (dayName) => {
+    return dayName.map((i) => {
+      if (i === "Monday") {
+        i = " Segundas-feiras";
+        return i;
+      } else if (i === "Tuesday") {
+        i = " Terças-feiras";
+        return i;
+      } else if (i === "Wednesday") {
+        i = " Quartas-feiras";
+        return i;
+      } else if (i === "Thursday") {
+        i = " Quintas-feiras";
+        return i;
+      } else if (i === "Friday") {
+        i = " Sextas-feiras";
+        return i;
+      } else if (i === "Saturday") {
+        i = " Sábados";
+        return i;
+      } else if (i === "Sunday") {
+        i = " Domingos";
+        return i;
+      }
       return i;
-    } else if (i === "Tuesday") {
-      i = " Terças-feiras";
-      return i;
-    } else if (i === "Wednesday") {
-      i = " Quartas-feiras";
-      return i;
-    } else if (i === "Thursday") {
-      i = " Quintas-feiras";
-      return i;
-    } else if (i === "Friday") {
-      i = " Sextas-feiras";
-      return i;
-    } else if (i === "Saturday") {
-      i = " Sábados";
-      return i;
-    } else if (i === "Sunday") {
-      i = " Domingos";
-      return i;
-    }
-    return i;
-  });
+    });
+  };
 
-  // calcula idade do elenco
+  // calcula idade do ator
   const fnCalculateAge = (dayOfBirth) => {
     const castDateOfBirth = dayOfBirth;
     const birthDate = new Date(castDateOfBirth);
     const difference = Date.now() - birthDate.getTime();
     const ageDate = new Date(difference);
     const calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-
     return calculatedAge;
   };
-  fnCalculateAge();
-
-  console.log(showImages);
 
   return (
-    <Container>
+    <Container className="fade-in-bottom">
       <ShowDetailedWrapper>
         <ShowImagePoster>
           <img src={image?.original || noImage} alt={name} title={name} />
@@ -110,7 +126,7 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Qde. de temporadas:{" "}
+            N° de temporadas:{" "}
             <span>
               {seasons?.length || "???"}
               {seasons?.length > 1 ? " Temporadas" : " Temporada" || "???"}
@@ -127,14 +143,15 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Status:{" "}
+            Status atual:{" "}
             <span>
               {status === "Ended" ? "Encerrada" : "Em exibição" || "???"}
             </span>
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Nota IMDb: <span>{`${rating?.average}/10` || "???"}</span>
+            Nota IMDb:{" "}
+            <span>{rating?.average ? `${rating?.average}/10` : "???"}</span>
           </ShowDetailedData>
 
           <ShowDetailedData>
@@ -142,18 +159,21 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Idioma:{" "}
+            Idioma original:{" "}
             <span>{language === "English" ? "Inglês" : language || "???"}</span>
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Duração do episódio: <span>{`${runtime} minutos` || "???"}</span>
+            Duração do episódio:{" "}
+            <span>{runtime ? `${runtime} minutos` : "???"}</span>
           </ShowDetailedData>
 
           <ShowDetailedData>
             Dia de exibição:{" "}
             <span>
-              {!schedule?.time ? "???" : `${weekDays} - às ${schedule?.time}hs`}
+              {!schedule?.time
+                ? "???"
+                : `${weekDays(schedule?.days)} - às ${schedule?.time}hs`}
             </span>
           </ShowDetailedData>
 
@@ -166,17 +186,17 @@ const ShowDetail = ({
           </ShowDetailedData>
           <ShowDetailedSummary>
             <h2>Resumo do enredo:</h2>
-            <p>{summarized || "???"}</p>
+            <p>{summarized(summary)}</p>
           </ShowDetailedSummary>
         </ShowDetailedInfo>
       </ShowDetailedWrapper>
 
       {/*=======    ELENCO ======== */}
-      {cast ? (
-        <>
-          <ShowDetailedName>Elenco</ShowDetailedName>
-          <ShowDetailedCast>
-            {cast.map((item) => (
+      {cast.length > 0 ? (
+        <ShowMargin>
+          <ShowDetailedName>Atores</ShowDetailedName>
+          <ShowDetailedGrid>
+            {cast.slice(0, visibleCast).map((item) => (
               <div key={item.id}>
                 <img
                   src={item.person.image?.medium || noImage}
@@ -219,62 +239,68 @@ const ShowDetail = ({
                 </ShowDetailedCastInfo>
               </div>
             ))}
-          </ShowDetailedCast>
-        </>
+          </ShowDetailedGrid>
+          {cast.slice(0, visibleCast).length !== cast.length ? (
+            <ShowMoreBtn className="fade-in-bottom">
+              <button type="button" onClick={handleCast}>
+                Mostrar mais
+              </button>
+            </ShowMoreBtn>
+          ) : (
+            ""
+          )}
+        </ShowMargin>
       ) : (
-        <ShowDetailedCastInfo>
-          <h1>Sem informações do elenco</h1>
-        </ShowDetailedCastInfo>
+        <ShowMargin></ShowMargin>
       )}
 
       {/*=======  PRODUÇÃO ======== */}
-      {crew && (
-        <>
-          <div style={{ margin: "50px auto 0" }}>
-            <h2>Produção</h2>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "20px",
-            }}
-          >
-            {crew.map((item) => (
+      {crew.length > 0 ? (
+        <ShowMargin>
+          <ShowDetailedName>Produtores:</ShowDetailedName>
+          <ShowDetailedGrid>
+            {crew.slice(0, visibleCrew).map((item) => (
               <div key={item.id}>
                 <img
-                  src={item.person.image?.medium || noImage}
-                  alt={item.person.name}
-                  style={{ width: "180px", minHeight: "230px" }}
-                  title={item.person.name}
+                  src={item?.person.image?.medium || noImage}
+                  alt={item?.person?.name}
+                  title={item?.person?.name}
                 />
 
-                <h4 style={{ margin: "0 0 5px" }} key={item.i}>
-                  {item.person.name}
-                </h4>
-                <span>{item.type}</span>
+                <h3 style={{ color: "var(--light)" }}>
+                  {item?.person?.name || "???"}
+                </h3>
+                <span
+                  style={{
+                    fontSize: "14px",
+                    color: "#666666",
+                  }}
+                >
+                  {item?.type || "???"}
+                </span>
               </div>
             ))}
-          </div>
-        </>
+          </ShowDetailedGrid>
+
+          {crew.slice(0, visibleCrew).length !== crew.length ? (
+            <ShowMoreBtn className="fade-in-bottom">
+              <button type="button" onClick={handleCrew}>
+                Mostrar mais
+              </button>
+            </ShowMoreBtn>
+          ) : (
+            ""
+          )}
+        </ShowMargin>
+      ) : (
+        <ShowMargin></ShowMargin>
       )}
 
       {/*=======  GALERIA DE IMAGES ======== */}
-      {showImages && (
-        <>
-          <div style={{ margin: "50px auto 0" }}>
-            <h2>Galeria:</h2>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-            }}
-          >
+      {showImages.length > 0 ? (
+        <ShowMargin>
+          <ShowDetailedName>Galeria:</ShowDetailedName>
+          <ShowDetailedGrid>
             {showImages.map((item) => (
               <div key={item.id}>
                 <a
@@ -286,14 +312,16 @@ const ShowDetail = ({
                     src={item.resolutions?.original?.url}
                     alt={item?.type}
                     title={item?.type}
-                    style={{ width: "400px" }}
                   />
                 </a>
               </div>
             ))}
-          </div>
-        </>
+          </ShowDetailedGrid>
+        </ShowMargin>
+      ) : (
+        <ShowMargin></ShowMargin>
       )}
+      <GoToTopShows />
     </Container>
   );
 };

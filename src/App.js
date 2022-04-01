@@ -4,10 +4,12 @@ import Navbar from "./components/Navbar";
 import Shows from "./pages/Shows";
 import ShowDetail from "./pages/ShowDetail";
 import AboutPage from "./pages/AboutPage";
+import ShowsSearch from "./pages/ShowsSearch.jsx";
 import axios from "axios";
 import { BASE_URL } from "./config";
 import FooterShows from "./components/FooterShows";
 import { GlobalStyle } from "./styles/Styled";
+import RouterTopShows from "./components/RouterTopShows";
 
 function App() {
   const [shows, setShows] = useState([]);
@@ -95,44 +97,52 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) => (
-              <Shows
-                shows={shows}
-                data={data}
-                error={error}
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
-                search={search}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/shows/:id"
-            render={(props) => (
-              <ShowDetail
-                {...props}
-                getShow={getShow}
-                getShowCast={getShowCast}
-                getShowCrew={getShowCrew}
-                getShowImages={getShowImages}
-                getShowSeasons={getShowSeasons}
-                show={show}
-                cast={cast}
-                crew={crew}
-                showImages={showImages}
-                seasons={seasons}
-              />
-            )}
-          />
-          <Route exact path="/about" render={(props) => <AboutPage />} />
-        </Switch>
-        <FooterShows />
+        <RouterTopShows>
+          <Navbar shows={shows} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <Shows shows={shows} data={data} error={error} />
+              )}
+            />
+            <Route
+              exact
+              path="/search"
+              render={(props) => (
+                <ShowsSearch
+                  handleSubmit={handleSubmit}
+                  handleChange={handleChange}
+                  search={search}
+                  data={data}
+                  error={error}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/shows/:id"
+              render={(props) => (
+                <ShowDetail
+                  {...props}
+                  getShow={getShow}
+                  getShowCast={getShowCast}
+                  getShowCrew={getShowCrew}
+                  getShowImages={getShowImages}
+                  getShowSeasons={getShowSeasons}
+                  show={show}
+                  cast={cast}
+                  crew={crew}
+                  showImages={showImages}
+                  seasons={seasons}
+                />
+              )}
+            />
+            <Route exact path="/about" render={(props) => <AboutPage />} />
+          </Switch>
+          <FooterShows />
+        </RouterTopShows>
       </Router>
       <GlobalStyle />
     </>

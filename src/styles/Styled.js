@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
  }
  
  :root {
-   --light: #fff;
+   --light: #cdcdcd;
    --red: #e30000;
    --gray: #ccc;
    --dark: #000;
@@ -28,9 +28,9 @@ export const GlobalStyle = createGlobalStyle`
    height: 100%;
    width: 100%;
    font-weight: 600; 
-   scroll-behavior: smooth; 
-   /* background: rgb(0,0,0);
-   background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,20,1) 76%, rgba(0,2,28,1) 100%); */
+   scroll-behavior: smooth;    
+   background: rgb(0,0,0);
+background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,11,1) 49%, rgba(13,0,27,1) 100%);
  }
  
   h1,
@@ -52,6 +52,11 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+/**
+ * ----------------------------------------
+ *            ANIMATIONS
+ * ----------------------------------------
+ */
   .fade-in-bottom {
     -webkit-animation: fade-in 1.2s ease-in 0.5s both;
             animation: fade-in 1.2s ease-in 0.5s both;
@@ -73,10 +78,41 @@ export const GlobalStyle = createGlobalStyle`
       opacity: 1;
     }
   }
+
+  .slide-in-bottom {
+	-webkit-animation: slide-in-bottom 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+	        animation: slide-in-bottom 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+   }
+
+   @-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
 `;
 
 export const Container = styled.div`
   padding: 0 5%;
+  position: relative;
 `;
 
 /**
@@ -188,7 +224,7 @@ export const FormShow = styled.form`
     padding: 3px 5px;
     font-size: 1rem;
     width: 100%;
-    background: #000112;
+    background: #030204;
     color: var(--light);
 
     &:focus {
@@ -324,7 +360,7 @@ export const ShowErrorMsg = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 10%;
+  /* margin-top: 10%; */
 
   h2 {
     margin-top: 20px;
@@ -353,7 +389,7 @@ export const ShowMoreBtn = styled.div`
     background: var(--red);
     padding: 8px 20px;
     cursor: pointer;
-    color: var(--white);
+    color: var(--light);
   }
 `;
 
@@ -405,12 +441,12 @@ export const ShowDetailedName = styled.h1`
   margin: 0 0 30px;
   font-weight: bolder;
   text-transform: uppercase;
-  /* color: var(--light); */
+  color: var(--red);
 `;
 
 export const ShowDetailedData = styled.h3`
   margin: 0 auto 8px;
-  /* color: var(--light); */
+  color: var(--light);
 
   span {
     font-weight: bold;
@@ -424,6 +460,7 @@ export const ShowDetailedSummary = styled.div`
 
   h2 {
     margin: 0 0 10px;
+    color: var(--light);
   }
 
   p {
@@ -434,7 +471,7 @@ export const ShowDetailedSummary = styled.div`
   }
 `;
 
-export const ShowDetailedCast = styled.div`
+export const ShowDetailedGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-column-gap: 20px;
@@ -471,6 +508,7 @@ export const ShowDetailedCast = styled.div`
 
 export const ShowDetailedCastInfo = styled.div`
   margin: 0 0 5px;
+  color: var(--light);
 
   h3 {
     margin: 0;
@@ -486,6 +524,11 @@ export const ShowDetailedCastInfo = styled.div`
     font-size: 0.8rem;
     font-style: italic;
   }
+`;
+
+export const ShowMargin = styled.div`
+  margin-top: 10%;
+  position: relative;
 `;
 
 /**
