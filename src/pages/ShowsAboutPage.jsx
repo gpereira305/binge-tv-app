@@ -1,9 +1,10 @@
 import React from "react";
+import { Container, ShowsAbout } from "../styles/Styled";
 
 const AboutPage = () => {
   return (
-    <div>
-      <p>
+    <Container style={{ minHeight: "81vh", marginTop: "3%" }}>
+      <ShowsAbout>
         tempore, omnis, delectus veniam excepturi molestiae aliquid nihil!
         Consequuntur, iure, nisi, placeat vero rerum laborum excepturi neque
         vitae fugiat optio magnam reiciendis! Ab possimus ratione quidem?
@@ -25,8 +26,8 @@ const AboutPage = () => {
         consectetur inventore dignissimos omnis magni temporibus? Praesentium,
         sunt accusantium dicta cupiditate nulla expedita repudiandae accusamus
         illum facere in culpa repellendus! Praesentium eum quia voluptate vero
-      </p>
-    </div>
+      </ShowsAbout>
+    </Container>
   );
 };
 

@@ -15,10 +15,16 @@ const Navbar = () => {
 
         <ul>
           <li>
-            <Link to={"/search"}>Pesquisar</Link>
+            <Link to={"/about"}>Sobre o app</Link>
           </li>
           <li>
-            <Link to={"/about"}>Sobre o app</Link>
+            <a
+              href="https://www.tvmaze.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TVMaze
+            </a>
           </li>
         </ul>
         <MobileIcon>

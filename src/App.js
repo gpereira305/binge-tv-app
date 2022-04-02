@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Shows from "./pages/Shows";
-import ShowDetail from "./pages/ShowDetail";
-import AboutPage from "./pages/AboutPage";
-import ShowsSearch from "./pages/ShowsSearch.jsx";
-import axios from "axios";
 import { BASE_URL } from "./config";
-import FooterShows from "./components/FooterShows";
 import { GlobalStyle } from "./styles/Styled";
-import RouterTopShows from "./components/RouterTopShows";
+import axios from "axios";
+
+import ShowsNavbar from "./components/ShowsNavbar";
+import ShowsHomePage from "./pages/ShowsHomePage";
+import ShowsDetail from "./pages/ShowsDetail";
+import ShowsAboutPage from "./pages/ShowsAboutPage";
+import ShowsFooter from "./components/ShowsFooter";
+import ShowsTopPage from "./components/ShowsTopPage";
 
 function App() {
   const [shows, setShows] = useState([]);
@@ -71,11 +71,17 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsSubmitted(true);
+    console.log(search);
+
+    window.scrollTo({
+      top: 920,
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {
     if (isSubmitted && search.length > 0) {
-      fetch(`https://api.tvmaze.com/search/shows?q=${search}`)
+      fetch(`${BASE_URL}/search/shows?q=${search}`)
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -97,26 +103,21 @@ function App() {
   return (
     <>
       <Router>
-        <RouterTopShows>
-          <Navbar shows={shows} />
+        <ShowsTopPage>
+          <ShowsNavbar shows={shows} />
           <Switch>
             <Route
               exact
               path="/"
               render={(props) => (
-                <Shows shows={shows} data={data} error={error} />
-              )}
-            />
-            <Route
-              exact
-              path="/search"
-              render={(props) => (
-                <ShowsSearch
+                <ShowsHomePage
+                  shows={shows}
+                  data={data}
+                  setData={setData}
+                  error={error}
                   handleSubmit={handleSubmit}
                   handleChange={handleChange}
                   search={search}
-                  data={data}
-                  error={error}
                 />
               )}
             />
@@ -124,7 +125,7 @@ function App() {
               exact
               path="/shows/:id"
               render={(props) => (
-                <ShowDetail
+                <ShowsDetail
                   {...props}
                   getShow={getShow}
                   getShowCast={getShowCast}
@@ -139,10 +140,10 @@ function App() {
                 />
               )}
             />
-            <Route exact path="/about" render={(props) => <AboutPage />} />
+            <Route exact path="/about" render={(props) => <ShowsAboutPage />} />
           </Switch>
-          <FooterShows />
-        </RouterTopShows>
+          <ShowsFooter />
+        </ShowsTopPage>
       </Router>
       <GlobalStyle />
     </>

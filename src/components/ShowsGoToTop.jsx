@@ -20,7 +20,7 @@ const ScrollTop = styled.div`
   }
 `;
 
-const GoToTopShows = () => {
+const ShowsGoToTop = () => {
   const [visible, setVisible] = useState(false);
 
   // determina a posisão em que o scroll icon irá aparecer na página
@@ -56,4 +56,4 @@ const GoToTopShows = () => {
   );
 };
 
-export default GoToTopShows;
+export default ShowsGoToTop;

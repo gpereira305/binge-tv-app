@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import noImage from "../assets/images/no_image.jpg";
-import GoToTopShows from "../components/GoToTopShows";
+import ShowsGoToTop from "../components/ShowsGoToTop";
 import {
   Container,
   ShowDetailedWrapper,
@@ -29,6 +28,9 @@ const ShowDetail = ({
   getShowSeasons,
   match,
 }) => {
+  const [visibleCast, setVisibleCast] = useState(12);
+  const [visibleCrew, setVisibleCrew] = useState(12);
+
   useEffect(() => {
     getShow(match.params.id);
     getShowCast(match.params.id);
@@ -37,9 +39,6 @@ const ShowDetail = ({
     getShowSeasons(match.params.id);
     // eslint-disable-next-line
   }, []);
-
-  const [visibleCast, setVisibleCast] = useState(12);
-  const [visibleCrew, setVisibleCrew] = useState(12);
 
   const handleCast = () => {
     setVisibleCast((prevShows) => prevShows + 12);
@@ -110,7 +109,7 @@ const ShowDetail = ({
   };
 
   return (
-    <Container className="fade-in-bottom">
+    <Container className="fade-in-bottom" style={{ minHeight: "81vh" }}>
       <ShowDetailedWrapper>
         <ShowImagePoster>
           <img src={image?.original || noImage} alt={name} title={name} />
@@ -321,7 +320,7 @@ const ShowDetail = ({
       ) : (
         <ShowMargin></ShowMargin>
       )}
-      <GoToTopShows />
+      <ShowsGoToTop />
     </Container>
   );
 };

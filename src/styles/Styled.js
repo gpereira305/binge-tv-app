@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
    font-weight: 600; 
    scroll-behavior: smooth;    
    background: rgb(0,0,0);
-background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,11,1) 49%, rgba(13,0,27,1) 100%);
+   background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,11,1) 49%, rgba(13,0,27,1) 100%); 
  }
  
   h1,
@@ -224,7 +224,7 @@ export const FormShow = styled.form`
     padding: 3px 5px;
     font-size: 1rem;
     width: 100%;
-    background: #030204;
+    background-color: transparent;
     color: var(--light);
 
     &:focus {
@@ -346,7 +346,7 @@ export const ShowCard = styled.li`
     height: 1rem;
     padding: 0.65rem;
     background-color: var(--golden);
-    color: var(--light);
+    color: var(--dark);
     border-top-right-radius: var(--radius);
     font-size: 12px;
     font-weight: 800;
@@ -360,7 +360,6 @@ export const ShowErrorMsg = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* margin-top: 10%; */
 
   h2 {
     margin-top: 20px;
@@ -391,6 +390,15 @@ export const ShowMoreBtn = styled.div`
     cursor: pointer;
     color: var(--light);
   }
+`;
+
+/**
+ * ----------------------------------------
+ *       HOMEPAGE SECTION
+ * ----------------------------------------
+ */
+export const ShowsAbout = styled.p`
+  color: var(--light);
 `;
 
 /**
@@ -466,8 +474,7 @@ export const ShowDetailedSummary = styled.div`
   p {
     color: var(--light_dark);
     font-size: 0.95rem;
-    font-style: italic;
-    font-weight: bold;
+    line-height: 1.7;
   }
 `;
 

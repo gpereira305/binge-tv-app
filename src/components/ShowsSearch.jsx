@@ -1,11 +1,11 @@
 import { FormShow } from "../styles/Styled";
 
-export default function UserInput({ handleSubmit, handleChange, search }) {
+export default function UserInput({ search, handleChange, handleSubmit }) {
   return (
     <FormShow onSubmit={handleSubmit} className="fade-in-bottom">
       <div>
         <input
-          type="name"
+          type="text"
           onChange={handleChange}
           value={search}
           className="input"
