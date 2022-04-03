@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import noImage from "../assets/images/no_image.jpg";
 import ShowsSpinner from "../components/ShowsSpinner";
+import ShowsGoToTop from "../components/ShowsGoToTop";
+import ShowsCarousel from "../components/ShowsCarousel";
+import ShowsSearch from "../components/ShowsSearch";
+import ShowLoadMoreBtn from "../components/ShowLoadMoreBtn";
+
 import {
   Container,
   ShowCard,
   ShowErrorMsg,
   ShowMain,
-  ShowMoreBtn,
   ShowsGrid,
 } from "../styles/Styled";
-import ShowsGoToTop from "../components/ShowsGoToTop";
-import ShowsCarousel from "../components/ShowsCarousel";
-import ShowsSearch from "../components/ShowsSearch";
 
 const ShowsHomePage = ({ shows, handleSubmit, handleChange, search, data }) => {
   const [visibleShows, setVisibleShows] = useState(24);
@@ -76,11 +77,7 @@ const ShowsHomePage = ({ shows, handleSubmit, handleChange, search, data }) => {
 
                   {/*===== botão 'mostrar mais' ======*/}
                   {shows.slice(0, visibleShows).length !== 240 ? (
-                    <ShowMoreBtn className="fade-in-bottom">
-                      <button type="button" onClick={handleClick}>
-                        Mostrar mais
-                      </button>
-                    </ShowMoreBtn>
+                    <ShowLoadMoreBtn handleClick={handleClick} />
                   ) : (
                     ""
                   )}

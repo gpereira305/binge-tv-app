@@ -79,12 +79,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .slide-in-bottom {
-	-webkit-animation: slide-in-bottom 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
-	        animation: slide-in-bottom 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
-   }
+.slide-in-bottom {
+-webkit-animation: slide-in-bottom 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+        animation: slide-in-bottom 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) both;
+  }
 
-   @-webkit-keyframes slide-in-bottom {
+@-webkit-keyframes slide-in-bottom {
   0% {
     -webkit-transform: translateY(1000px);
             transform: translateY(1000px);
@@ -96,6 +96,7 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 1;
   }
 }
+
 @keyframes slide-in-bottom {
   0% {
     -webkit-transform: translateY(1000px);
@@ -113,6 +114,7 @@ export const GlobalStyle = createGlobalStyle`
 export const Container = styled.div`
   padding: 0 5%;
   position: relative;
+  margin-bottom: 5%;
 `;
 
 /**
@@ -400,7 +402,7 @@ export const ShowMoreBtn = styled.div`
 export const ShowsAbout = styled.h2`
   color: var(--light);
   letter-spacing: 2px;
-  padding: 10%; 
+  padding: 10%;
   line-height: 1.8;
 `;
 
@@ -550,8 +552,52 @@ export const Footer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 10vh;
   background-color: var(--dark);
   color: var(--light);
   margin-top: 20px;
+  padding: 25px 0 10px;
+`;
+
+export const FooterCopy = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: flex-end;
+
+  > small {
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 470px) {
+    flex-direction: column-reverse;
+    align-items: center;
+
+    small {
+      padding-bottom: 10px;
+    }
+  }
+`;
+
+export const FooterLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  text-decoration: underline;
+
+  > span {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+  }
+
+  a {
+    color: var(--light);
+  }
+
+  @media (max-width: 470px) {
+    margin-bottom: 10px;
+  }
 `;

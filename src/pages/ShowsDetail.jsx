@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import noImage from "../assets/images/no_image.jpg";
+import ShowLoadMoreBtn from "../components/ShowLoadMoreBtn";
 import ShowsGoToTop from "../components/ShowsGoToTop";
 import {
   Container,
@@ -12,7 +13,6 @@ import {
   ShowDetailedCastInfo,
   ShowDetailedGrid,
   ShowMargin,
-  ShowMoreBtn,
 } from "../styles/Styled.js";
 
 const ShowDetail = ({
@@ -29,7 +29,6 @@ const ShowDetail = ({
   match,
 }) => {
   const [visibleCast, setVisibleCast] = useState(12);
-  const [visibleCrew, setVisibleCrew] = useState(12);
 
   useEffect(() => {
     getShow(match.params.id);
@@ -40,12 +39,8 @@ const ShowDetail = ({
     // eslint-disable-next-line
   }, []);
 
-  const handleCast = () => {
+  const handleClick = () => {
     setVisibleCast((prevShows) => prevShows + 12);
-  };
-
-  const handleCrew = () => {
-    setVisibleCrew((prevShows) => prevShows + 12);
   };
 
   const {
@@ -163,8 +158,7 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Duração:{" "}
-            <span>{runtime ? `${runtime} minutos` : "???"}</span>
+            Duração: <span>{runtime ? `${runtime} minutos` : "???"}</span>
           </ShowDetailedData>
 
           <ShowDetailedData>
@@ -240,11 +234,7 @@ const ShowDetail = ({
             ))}
           </ShowDetailedGrid>
           {cast.slice(0, visibleCast).length !== cast.length ? (
-            <ShowMoreBtn className="fade-in-bottom">
-              <button type="button" onClick={handleCast}>
-                Mostrar mais
-              </button>
-            </ShowMoreBtn>
+            <ShowLoadMoreBtn handleClick={handleClick} />
           ) : (
             ""
           )}
@@ -258,7 +248,7 @@ const ShowDetail = ({
         <ShowMargin>
           <ShowDetailedName>Produção:</ShowDetailedName>
           <ShowDetailedGrid>
-            {crew.slice(0, visibleCrew).map((item) => (
+            {crew.slice(0, visibleCast).map((item) => (
               <div key={item.id}>
                 <img
                   src={item?.person.image?.medium || noImage}
@@ -281,12 +271,8 @@ const ShowDetail = ({
             ))}
           </ShowDetailedGrid>
 
-          {crew.slice(0, visibleCrew).length !== crew.length ? (
-            <ShowMoreBtn className="fade-in-bottom">
-              <button type="button" onClick={handleCrew}>
-                Mostrar mais
-              </button>
-            </ShowMoreBtn>
+          {crew.slice(0, visibleCast).length !== crew.length ? (
+            <ShowLoadMoreBtn handleClick={handleClick} />
           ) : (
             ""
           )}
