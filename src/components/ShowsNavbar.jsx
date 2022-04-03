@@ -10,14 +10,14 @@ const Navbar = () => {
       <nav>
         <Link to={"/"} title="Binge Tv | Home">
           <BsDisplay />
-          BingeTv
+          BingeTV
         </Link>
 
         <ul>
           <li>
-            <Link to={"/about"}>Sobre o app</Link>
+            <Link to={"/about"} title="Sobre o app">Sobre o app</Link>
           </li>
-          <li>
+          <li title="Visitar o site do TvMaze">
             <a
               href="https://www.tvmaze.com/"
               target="_blank"

@@ -109,7 +109,7 @@ function App() {
             <Route
               exact
               path="/"
-              render={(props) => (
+              render={() => (
                 <ShowsHomePage
                   shows={shows}
                   data={data}
@@ -140,7 +140,7 @@ function App() {
                 />
               )}
             />
-            <Route exact path="/about" render={(props) => <ShowsAboutPage />} />
+            <Route exact path="/about" render={() => <ShowsAboutPage />} />
           </Switch>
           <ShowsFooter />
         </ShowsTopPage>

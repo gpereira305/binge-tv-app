@@ -120,12 +120,12 @@ const ShowDetail = ({
             {name?.length > 40 ? `${name?.slice(0, 40)}...` : name || "???"}
           </ShowDetailedName>
           <ShowDetailedData>
-            Data de estreia:{" "}
+            Estreia:{" "}
             <span>{premiered?.split("-").reverse().join("/") || "???"}</span>
           </ShowDetailedData>
 
           <ShowDetailedData>
-            N° de temporadas:{" "}
+            Temporadas:{" "}
             <span>
               {seasons?.length || "???"}
               {seasons?.length > 1 ? " Temporadas" : " Temporada" || "???"}
@@ -135,14 +135,14 @@ const ShowDetail = ({
           <ShowDetailedData>
             {status !== "Running" && (
               <>
-                Último episódio:{" "}
+                Final:{" "}
                 <span>{ended?.split("-").reverse().join("/") || "???"}</span>
               </>
             )}
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Status atual:{" "}
+            Status:{" "}
             <span>
               {status === "Ended" ? "Encerrada" : "Em exibição" || "???"}
             </span>
@@ -163,12 +163,12 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Duração do episódio:{" "}
+            Duração:{" "}
             <span>{runtime ? `${runtime} minutos` : "???"}</span>
           </ShowDetailedData>
 
           <ShowDetailedData>
-            Dia de exibição:{" "}
+            Exibição:{" "}
             <span>
               {!schedule?.time
                 ? "???"
@@ -181,10 +181,10 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            País de origem: <span>{network?.country?.name || "???"}</span>
+            País original <span>{network?.country?.name || "???"}</span>
           </ShowDetailedData>
           <ShowDetailedSummary>
-            <h2>Resumo do enredo:</h2>
+            <h2>Enredo:</h2>
             <p>{summarized(summary)}</p>
           </ShowDetailedSummary>
         </ShowDetailedInfo>
@@ -193,7 +193,7 @@ const ShowDetail = ({
       {/*=======    ELENCO ======== */}
       {cast.length > 0 ? (
         <ShowMargin>
-          <ShowDetailedName>Atores</ShowDetailedName>
+          <ShowDetailedName>Elenco</ShowDetailedName>
           <ShowDetailedGrid>
             {cast.slice(0, visibleCast).map((item) => (
               <div key={item.id}>
@@ -256,7 +256,7 @@ const ShowDetail = ({
       {/*=======  PRODUÇÃO ======== */}
       {crew.length > 0 ? (
         <ShowMargin>
-          <ShowDetailedName>Produtores:</ShowDetailedName>
+          <ShowDetailedName>Produção:</ShowDetailedName>
           <ShowDetailedGrid>
             {crew.slice(0, visibleCrew).map((item) => (
               <div key={item.id}>

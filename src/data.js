@@ -10,6 +10,11 @@ import banner9 from "./assets/images/background9.jpg";
 import banner10 from "./assets/images/background10.jpg";
 import banner11 from "./assets/images/background11.jpg";
 import banner12 from "./assets/images/background12.jpg";
+import banner13 from "./assets/images/background13.jpg";
+import banner14 from "./assets/images/background14.jpg";
+import banner15 from "./assets/images/background15.jpg";
+import banner16 from "./assets/images/background16.jpg";
+import banner17 from "./assets/images/background17.jpg";
 
 export const banners = [
   banner1,
@@ -24,4 +29,9 @@ export const banners = [
   banner10,
   banner11,
   banner12,
+  banner13,
+  banner14,
+  banner15,
+  banner16,
+  banner17,
 ];

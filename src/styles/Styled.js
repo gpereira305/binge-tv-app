@@ -397,8 +397,11 @@ export const ShowMoreBtn = styled.div`
  *       HOMEPAGE SECTION
  * ----------------------------------------
  */
-export const ShowsAbout = styled.p`
+export const ShowsAbout = styled.h2`
   color: var(--light);
+  letter-spacing: 2px;
+  padding: 10%; 
+  line-height: 1.8;
 `;
 
 /**
