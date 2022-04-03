@@ -28,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
    height: 100%;
    width: 100%;
    font-weight: 600; 
+   font-family: 'Poppins', sans-serif;
    scroll-behavior: smooth;    
    background: rgb(0,0,0);
    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,11,1) 49%, rgba(13,0,27,1) 100%); 
