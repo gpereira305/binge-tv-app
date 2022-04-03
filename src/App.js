@@ -68,17 +68,7 @@ function App() {
     setSearch(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsSubmitted(true);
-    console.log(search);
-
-    window.scrollTo({
-      top: 920,
-      behavior: "smooth",
-    });
-  };
-
+  // busca os tv shows correspondentes à busca feita no campo de pesquisa
   useEffect(() => {
     if (isSubmitted && search.length > 0) {
       fetch(`${BASE_URL}/search/shows?q=${search}`)
@@ -99,6 +89,18 @@ function App() {
       setSearch("");
     }
   }, [isSubmitted, search]);
+
+  // ao pesquisar um tv o usuário é redirecionado para o grid de imagens
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setIsSubmitted(true);
+    console.log(search);
+
+    window.scrollTo({
+      top: 920,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>

@@ -56,6 +56,8 @@ const ShowDetail = ({
     network,
     schedule,
     status,
+    url,
+    officialSite,
   } = show;
 
   // parseia de html tag para string
@@ -103,6 +105,7 @@ const ShowDetail = ({
     return calculatedAge;
   };
 
+  console.log(cast);
   return (
     <Container className="fade-in-bottom" style={{ minHeight: "81vh" }}>
       <ShowDetailedWrapper>
@@ -115,7 +118,7 @@ const ShowDetail = ({
             {name?.length > 40 ? `${name?.slice(0, 40)}...` : name || "???"}
           </ShowDetailedName>
           <ShowDetailedData>
-            Estreia:{" "}
+            1° episódio:{" "}
             <span>{premiered?.split("-").reverse().join("/") || "???"}</span>
           </ShowDetailedData>
 
@@ -130,7 +133,7 @@ const ShowDetail = ({
           <ShowDetailedData>
             {status !== "Running" && (
               <>
-                Final:{" "}
+                Último episódio:{" "}
                 <span>{ended?.split("-").reverse().join("/") || "???"}</span>
               </>
             )}
@@ -166,7 +169,7 @@ const ShowDetail = ({
             <span>
               {!schedule?.time
                 ? "???"
-                : `${weekDays(schedule?.days)} - às ${schedule?.time}hs`}
+                : `${weekDays(schedule?.days)} - às ${schedule?.time}hrs`}
             </span>
           </ShowDetailedData>
 
@@ -175,8 +178,46 @@ const ShowDetail = ({
           </ShowDetailedData>
 
           <ShowDetailedData>
-            País original <span>{network?.country?.name || "???"}</span>
+            País: <span>{network?.country?.name || "???"}</span>
           </ShowDetailedData>
+
+          {officialSite && (
+            <ShowDetailedData>
+              Site oficial:{" "}
+              <small>
+                <a
+                  href={officialSite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "var(--light_dark",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Clique aqui
+                </a>
+              </small>
+            </ShowDetailedData>
+          )}
+
+          {url && (
+            <ShowDetailedData>
+              TVMaze:{" "}
+              <small>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "var(--light_dark",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Clique aqui
+                </a>
+              </small>
+            </ShowDetailedData>
+          )}
           <ShowDetailedSummary>
             <h2>Enredo:</h2>
             <p>{summarized(summary)}</p>
@@ -229,6 +270,26 @@ const ShowDetail = ({
                         : "???"}
                     </span>
                   </h4>
+                  {item.person.url && (
+                    <h5
+                      style={{
+                        marginTop: "10px",
+                      }}
+                    >
+                      <a
+                        style={{
+                          color: "var(--light)",
+                          fontStyle: "italic",
+                          textDecoration: "underline",
+                        }}
+                        href={item.person.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Perfil no TvMaze
+                      </a>
+                    </h5>
+                  )}
                 </ShowDetailedCastInfo>
               </div>
             ))}
