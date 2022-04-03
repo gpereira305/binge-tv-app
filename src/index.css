@@ -5,7 +5,7 @@
 }
 
 .carousel.carousel-slider {
-  height: 750px;
+  height: 857px;
 }
 
 .carousel .slide {
@@ -26,5 +26,11 @@
 @media (max-width: 1370px) {
   .carousel.carousel-slider {
     height: initial;
+  }
+}
+
+@media (max-width: 470px) {
+  .control-dots {
+    display: none;
   }
 }

@@ -228,7 +228,7 @@ const ShowDetail = ({
       {/*=======    ELENCO ======== */}
       {cast.length > 0 ? (
         <ShowMargin>
-          <ShowDetailedName>Elenco</ShowDetailedName>
+          <ShowDetailedName>Elenco:</ShowDetailedName>
           <ShowDetailedGrid>
             {cast.slice(0, visibleCast).map((item) => (
               <div key={item.id}>

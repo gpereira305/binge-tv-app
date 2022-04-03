@@ -7,7 +7,9 @@ import styled, { createGlobalStyle } from "styled-components";
  */
 export const GlobalStyle = createGlobalStyle`
  * {
-   letter-spacing: 1.5px;
+   letter-spacing: 1.3px;
+   font-weight: normal;
+   line-height: 1.2;
  }
  
  :root {
@@ -26,8 +28,7 @@ export const GlobalStyle = createGlobalStyle`
    padding: 0;
    box-sizing: border-box;
    height: 100%;
-   width: 100%;
-   font-weight: 600; 
+   width: 100%; 
    font-family: 'Poppins', sans-serif;
    scroll-behavior: smooth;    
    background: rgb(0,0,0);
@@ -453,7 +454,7 @@ export const ShowDetailedInfo = styled.div`
 
 export const ShowDetailedName = styled.h1`
   margin: 0 0 30px;
-  font-weight: bolder;
+  font-weight: light;
   text-transform: uppercase;
   color: var(--red);
 `;
@@ -463,7 +464,7 @@ export const ShowDetailedData = styled.h3`
   color: var(--light);
 
   span {
-    font-weight: bold;
+    font-weight: light;
     font-size: 1rem;
     color: var(--light_dark);
   }
@@ -533,7 +534,7 @@ export const ShowDetailedCastInfo = styled.div`
 
   span {
     color: var(--light_dark);
-    font-weight: bold;
+    font-weight: light;
     font-size: 0.8rem;
     font-style: italic;
   }
