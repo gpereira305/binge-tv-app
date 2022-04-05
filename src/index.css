@@ -19,8 +19,34 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background-color: rgb(0 0 0 / 55%);
+  bottom: 0; 
+  background: rgb(0,0,5);
+  background: radial-gradient(circle, rgba(0,0,5,0.4066001400560224) 1%, rgba(0,0,11,1) 90%);
+}
+
+
+.image__wrapper{
+ position: relative;
+ cursor: pointer;
+}
+  
+.image__actor{
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.image__wrapper:hover .image__actor{
+  opacity: 1;
+}
+
+.active {
+  display: flex!important;
 }
 
 @media (max-width: 1370px) {

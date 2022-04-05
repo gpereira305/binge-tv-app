@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import noImage from "../assets/images/no_image.jpg";
 import ShowsSpinner from "../components/ShowsSpinner";
 import ShowsGoToTop from "../components/ShowsGoToTop";
-import ShowsCarousel from "../components/ShowsCarousel";
-import ShowsSearch from "../components/ShowsSearch";
+import ShowsCarousel from "../components/ShowsCarousel"; 
 import ShowLoadMoreBtn from "../components/ShowLoadMoreBtn";
 
 import {
@@ -13,6 +12,7 @@ import {
   ShowErrorMsg,
   ShowMain,
   ShowsGrid,
+  ShowsHeaderTitle
 } from "../styles/Styled";
 
 const ShowsHomePage = ({ shows, handleSubmit, handleChange, search, data }) => {
@@ -22,16 +22,31 @@ const ShowsHomePage = ({ shows, handleSubmit, handleChange, search, data }) => {
   const handleClick = () => {
     setVisibleShows((prevShows) => prevShows + 18);
   };
+ 
 
   return (
     <>
-      <ShowsCarousel />
-      <Container style={{ marginTop: "3%" }}>
-        <ShowsSearch
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          search={search}
-        />
+      <ShowsCarousel 
+       handleSubmit={handleSubmit}
+       handleChange={handleChange}
+       search={search}
+      />
+      <Container style={{ marginTop: "3%" }}>    
+      {data?.length === 0 && shows?.length > 0 ? (
+      <></> ) : ( 
+       <>
+        {data?.length > 0 ?  (
+          <ShowsHeaderTitle>
+            {data?.length > 1 ? 'Resultados' : 'Resultado'} para sua pesquisa
+          </ShowsHeaderTitle>
+            ) : (  
+            <ShowsHeaderTitle>Séries populares</ShowsHeaderTitle>
+          )} 
+        </> 
+      )}
+         
+          {console.log(data?.length > 0)}
+       <br /> 
         <ShowMain>
           {data ? (
             <ShowsGrid>

@@ -9,6 +9,7 @@ export default function UserInput({ search, handleChange, handleSubmit }) {
           onChange={handleChange}
           value={search}
           className="input"
+          placeholder="Pesquisar..."
         />
         <span className="material-icons">search</span>
       </div>

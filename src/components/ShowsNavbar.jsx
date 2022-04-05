@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsDisplay } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ShowNavbar, MobileIcon } from "../styles/Styled";
 
 const Navbar = () => {
+  const [ open, setOpen ] = useState(false)
+
   return (
     <ShowNavbar>
       <nav>
@@ -13,7 +15,7 @@ const Navbar = () => {
           BingeTV
         </Link>
 
-        <ul>
+        <ul className={open  ? "active" : ""}>
           <li>
             <Link to={"/about"} title="Sobre o app">Sobre o app</Link>
           </li>
@@ -27,7 +29,7 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-        <MobileIcon>
+        <MobileIcon onClick={ () => setOpen(!open) }>
           <GiHamburgerMenu />
         </MobileIcon>
       </nav>

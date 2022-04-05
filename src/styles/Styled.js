@@ -162,6 +162,7 @@ export const ShowNavbar = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
+    position: relative;
   }
 
   a {
@@ -178,11 +179,19 @@ export const ShowNavbar = styled.div`
   ul {
     display: flex;
     margin: 0;
-    min-width: 280px;
+    min-width: 250px;
     justify-content: space-between;
 
     @media (max-width: 524px) {
       display: none;
+      position: absolute;
+      top: 46px;
+      z-index: 1;
+      background: var(--dark);
+      width: 100%;
+      left: 0; 
+      padding: 30px 5%;
+      max-width: -webkit-fill-available;
     }
 
     li {
@@ -198,8 +207,15 @@ export const ShowNavbar = styled.div`
 export const MobileIcon = styled.div`
   display: none;
 
+  > svg {
+    margin-right: 0;
+    font-size: 1.5rem;
+  }
+
   @media (max-width: 524px) {
     display: flex;
+    color: var(--red);
+
   }
 `;
 /**
@@ -212,7 +228,10 @@ export const FormShow = styled.form`
   justify-content: center;
   align-items: center;
   min-height: 20vh;
-  margin: auto;
+  margin: auto; 
+  position: absolute;
+  width: 100%;
+  bottom: 35%; 
 
   div {
     position: relative;
@@ -223,26 +242,42 @@ export const FormShow = styled.form`
 
   input {
     border: none;
-    outline: none;
-    border-bottom: 2px solid var(--light);
-    padding: 3px 5px;
+    outline: none; 
+    border:  2px solid var(--light);
+    padding: 10px;
     font-size: 1rem;
     width: 100%;
     background-color: transparent;
     color: var(--light);
 
     &:focus {
-      border-bottom: 2px solid var(--red);
+      border: 2px solid var(--red);
     }
 
     &::placeholder {
       color: var(--light);
+      font-style: italic;
     }
   }
   .material-icons {
     position: absolute;
     color: var(--gray);
-    right: 0;
+    right: 13px;
+    top: 10px;
+  }
+
+  @media (max-width: 970px){
+   top: 15%;
+  }
+
+  @media (max-width: 670px){
+    bottom: 55%;
+    max-height: 10vh;
+  }
+
+  @media (max-width: 470px){
+    top: 0;
+    
   }
 `;
 
@@ -265,6 +300,11 @@ export const BannerImg = styled.div`
     height: -webkit-fill-available;
   }
 `;
+
+export const ShowsHeaderTitle = styled.h1`
+ color: var(--red);
+ margin-bottom: 3%;
+`
 
 export const ShowMain = styled.main`
   min-height: 81.1vh;
@@ -540,6 +580,7 @@ export const ShowDetailedCastInfo = styled.div`
   }
 `;
 
+ 
 export const ShowMargin = styled.div`
   margin-top: 10%;
   position: relative;

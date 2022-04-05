@@ -2,13 +2,15 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import { banners } from "../data";
+import ShowsSearch from './ShowsSearch'
 
-const CarouselShows = () => {
+const CarouselShows = ({handleSubmit, handleChange, search,}) => {
   return (
-    <Carousel
+   <div>
+   <Carousel
       autoPlay={true}
       infiniteLoop={true}
-      interval={4000}
+      interval={5000}
       transitionTime={1500}
     >
       {banners.map((b, i) => (
@@ -17,6 +19,12 @@ const CarouselShows = () => {
         </div>
       ))}
     </Carousel>
+    <ShowsSearch
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      search={search}
+    />
+  </div>
   );
 };
 
