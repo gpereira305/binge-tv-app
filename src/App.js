@@ -63,9 +63,9 @@ function App() {
     setSeasons(url.data);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setIsSubmitted(false);
-    setSearch(event.target.value);
+    setSearch(e.target.value);
   };
 
   // busca os tv shows correspondentes à busca feita no campo de pesquisa
@@ -91,13 +91,12 @@ function App() {
   }, [isSubmitted, search]);
 
   // ao pesquisar um tv o usuário é redirecionado para o grid de imagens
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setIsSubmitted(true);
-    console.log(search);
 
     window.scrollTo({
-      top: 920,
+      top: 360,
       behavior: "smooth",
     });
   };

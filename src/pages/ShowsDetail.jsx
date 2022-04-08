@@ -28,7 +28,7 @@ const ShowDetail = ({
   getShowSeasons,
   match,
 }) => {
-  const [visibleCast, setVisibleCast] = useState(12); 
+  const [visibleCast, setVisibleCast] = useState(12);
 
   useEffect(() => {
     getShow(match.params.id);
@@ -42,8 +42,6 @@ const ShowDetail = ({
   const handleClick = () => {
     setVisibleCast((prevShows) => prevShows + 12);
   };
-
- 
 
   const {
     name,
@@ -61,6 +59,8 @@ const ShowDetail = ({
     url,
     officialSite,
   } = show;
+
+  console.log(show);
 
   // parseia de html tag para string
   const summarized = (text) => {
@@ -105,8 +105,7 @@ const ShowDetail = ({
     const ageDate = new Date(difference);
     const calculatedAge = Math.abs(ageDate.getUTCFullYear() - 1970);
     return calculatedAge;
-  }; 
-
+  };
 
   return (
     <Container className="fade-in-bottom" style={{ minHeight: "81vh" }}>
@@ -220,7 +219,7 @@ const ShowDetail = ({
               </small>
             </ShowDetailedData>
           )}
-          <ShowDetailedSummary> 
+          <ShowDetailedSummary>
             <h2>Enredo:</h2>
             <p>{summarized(summary)}</p>
           </ShowDetailedSummary>
@@ -234,19 +233,19 @@ const ShowDetail = ({
           <ShowDetailedGrid>
             {cast.slice(0, visibleCast).map((item) => (
               <div key={item.id}>
-               <div  className="image__wrapper"> 
-                 <img
-                  className="image__character"
-                  src={item.person.image?.medium || noImage}
-                  alt={item.person.name}  
-                 />
-               <img
-                 className="image__actor"
-                 src={item.character.image?.medium || noImage}
-                 alt={item.character.name} 
-                 title={item.character.name}
-                />
-               </div>
+                <div className="image__wrapper">
+                  <img
+                    className="image__character"
+                    src={item.person.image?.medium || noImage}
+                    alt={item.person.name}
+                  />
+                  <img
+                    className="image__actor"
+                    src={item.character.image?.medium || noImage}
+                    alt={item.character.name}
+                    title={item.character.name}
+                  />
+                </div>
 
                 <ShowDetailedCastInfo>
                   <h3>{item.person?.name}</h3>

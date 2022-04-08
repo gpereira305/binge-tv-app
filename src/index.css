@@ -5,7 +5,7 @@
 }
 
 .carousel.carousel-slider {
-  height: 857px;
+  min-height: 55vh;
 }
 
 .carousel .slide {
@@ -19,18 +19,25 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0; 
-  background: rgb(0,0,5);
-  background: radial-gradient(circle, rgba(0,0,5,0.4066001400560224) 1%, rgba(0,0,11,1) 90%);
+  bottom: 0;
+  background: rgb(0, 0, 5);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 5, 0.4066001400560224) 1%,
+    rgba(0, 0, 11, 1) 90%
+  );
 }
 
-
-.image__wrapper{
- position: relative;
- cursor: pointer;
+.slider {
+  max-height: 76vh;
 }
-  
-.image__actor{
+
+.image__wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.image__actor {
   position: absolute;
   opacity: 0;
   left: 0;
@@ -41,21 +48,15 @@
   -o-transition: var(--transition);
 }
 
-.image__wrapper:hover .image__actor{
+.image__wrapper:hover .image__actor {
   opacity: 1;
 }
 
 .active {
-  display: flex!important;
+  display: flex !important;
 }
 
-@media (max-width: 1370px) {
-  .carousel.carousel-slider {
-    height: initial;
-  }
-}
-
-@media (max-width: 470px) {
+@media (max-width: 670px) {
   .control-dots {
     display: none;
   }

@@ -29,8 +29,7 @@ export const GlobalStyle = createGlobalStyle`
    box-sizing: border-box;
    height: 100%;
    width: 100%; 
-   font-family: 'Poppins', sans-serif;
-   scroll-behavior: smooth;    
+   font-family: 'Poppins', sans-serif; 
    background: rgb(0,0,0);
    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,11,1) 49%, rgba(13,0,27,1) 100%); 
  }
@@ -189,7 +188,7 @@ export const ShowNavbar = styled.div`
       z-index: 1;
       background: var(--dark);
       width: 100%;
-      left: 0; 
+      left: 0;
       padding: 30px 5%;
       max-width: -webkit-fill-available;
     }
@@ -215,7 +214,6 @@ export const MobileIcon = styled.div`
   @media (max-width: 524px) {
     display: flex;
     color: var(--red);
-
   }
 `;
 /**
@@ -228,10 +226,10 @@ export const FormShow = styled.form`
   justify-content: center;
   align-items: center;
   min-height: 20vh;
-  margin: auto; 
+  margin: auto;
   position: absolute;
   width: 100%;
-  bottom: 35%; 
+  bottom: 35%;
 
   div {
     position: relative;
@@ -242,8 +240,8 @@ export const FormShow = styled.form`
 
   input {
     border: none;
-    outline: none; 
-    border:  2px solid var(--light);
+    outline: none;
+    border: 2px solid var(--light);
     padding: 10px;
     font-size: 1rem;
     width: 100%;
@@ -266,18 +264,17 @@ export const FormShow = styled.form`
     top: 10px;
   }
 
-  @media (max-width: 970px){
-   top: 15%;
+  @media (max-width: 970px) {
+    top: 15%;
   }
 
-  @media (max-width: 670px){
+  @media (max-width: 670px) {
     bottom: 55%;
     max-height: 10vh;
   }
 
-  @media (max-width: 470px){
+  @media (max-width: 470px) {
     top: 0;
-    
   }
 `;
 
@@ -302,9 +299,13 @@ export const BannerImg = styled.div`
 `;
 
 export const ShowsHeaderTitle = styled.h1`
- color: var(--red);
- margin-bottom: 3%;
-`
+  color: var(--red);
+  margin-bottom: 3%;
+
+  @media (max-width: 670px) {
+    font-size: 1.5rem;
+  }
+`;
 
 export const ShowMain = styled.main`
   min-height: 81.1vh;
@@ -441,11 +442,11 @@ export const ShowMoreBtn = styled.div`
  *       HOMEPAGE SECTION
  * ----------------------------------------
  */
-export const ShowsAbout = styled.h2`
+export const ShowsAbout = styled.h4`
   color: var(--light);
   letter-spacing: 2px;
-  padding: 10%;
-  line-height: 1.8;
+  padding-top: 10%;
+  line-height: 1.5;
 `;
 
 /**
@@ -497,6 +498,10 @@ export const ShowDetailedName = styled.h1`
   font-weight: light;
   text-transform: uppercase;
   color: var(--red);
+
+  @media (max-width: 670px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const ShowDetailedData = styled.h3`
@@ -516,6 +521,10 @@ export const ShowDetailedSummary = styled.div`
   h2 {
     margin: 0 0 10px;
     color: var(--light);
+
+    @media (max-width: 670px) {
+      font-size: 1.5rem;
+    }
   }
 
   p {
@@ -580,7 +589,6 @@ export const ShowDetailedCastInfo = styled.div`
   }
 `;
 
- 
 export const ShowMargin = styled.div`
   margin-top: 10%;
   position: relative;
